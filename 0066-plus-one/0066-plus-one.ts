@@ -3,8 +3,7 @@ function plusOne(digits: number[]): number[] {
     while (digits[i] === 9 && i>=0) {
         digits[i] = 0;
         i--;
-    }
-    
+    } 
     if (i<0) {
         digits.unshift(1)
     } else {
