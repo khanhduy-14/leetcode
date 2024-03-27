@@ -3,13 +3,8 @@ function titleToNumber(columnTitle: string): number {
      for(let i = columnTitle.length - 1; i >= 0; i--) {
        const position = columnTitle.length - 1 - i
        const numberOfChar = columnTitle.charCodeAt(i) - 64
-       if (position > 0) {
-            number += Math.pow(26, position) * numberOfChar;
-       }
-         else {
-             number += numberOfChar
-         }
-       
+            number += Math.pow(26, position) * numberOfChar
+
        
      }
     return number
