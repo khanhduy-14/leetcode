@@ -18,8 +18,6 @@ function groupAnagrams(strs: string[]): string[][] {
     return result
 };
 
-console.log(getGroupKeyByWord('abbbbbbbbbbb'))
-console.log(getGroupKeyByWord("aaaaaaaaaaab"))
     function getGroupKeyByWord(word: string): string {    
     const arr = Array.from({length: 26},()=>0);
     let key = ''
