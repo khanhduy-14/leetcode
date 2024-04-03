@@ -19,15 +19,5 @@ function groupAnagrams(strs: string[]): string[][] {
 };
 
     function getGroupKeyByWord(word: string): string {    
-    const arr = Array.from({length: 26},()=>0);
-    let key = ''
-    for(let i=0;i<word.length;i++) {
-        arr[word.charCodeAt(i)-97]+=1;
-    }
-      for(let i=0;i<arr.length;i++) {
-        if(arr[i]>0){
-            key = key+String(i) + String(arr[i]) + '|'
-        }
-    }
-    return key
+    return  [...word].sort().join("")
 }
