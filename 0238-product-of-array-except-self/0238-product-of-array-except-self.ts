@@ -1,35 +1,15 @@
 function productExceptSelf(nums: number[]): number[] {
-    let numZero : number = 0;
-    let multi =  1;
-    
-    
-    for(let i = 0; i < nums.length; i++) {
-        if(nums[i]!==0) {
-             multi *= nums[i]
-        }
-        else {
-            numZero+=1;
-        }
-       
-    }
-    if (numZero >= 2) {
-        return Array(nums.length).fill(0);
-    }
     const result: number[] = [];
+    let left = 1;
+    let right = 1;
+    for(let i=0;i < nums.length;i++){
+        result[i] = left;
+        left *= nums[i]
+    }
     
-    for(let i = 0; i < nums.length; i++) {
-        if(numZero === 1) {
-             if(nums[i]!==0){
-                 result.push(0)
-             }
-            else {
-                result.push(multi)
-            }
-        }
-        else {
-            result.push(multi / nums[i])
-        }
-       
+       for(let i=nums.length - 1;i >= 0;i--){
+        result[i] *= right;
+        right *= nums[i]
     }
     return result
     
