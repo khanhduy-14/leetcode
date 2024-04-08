@@ -4,14 +4,13 @@ function evalRPN(tokens: string[]): number {
         if(isNaN(Number(token))) {
             const num1 = Number(stack.pop());
             const num2 = Number(stack.pop());
-            const result = calculate(num2, num1, token);
-            stack.push(String(result));
+            stack.push(String(calculate(num2, num1, token)));
         }
         else {
             stack.push(String(token));
         }
     }
-    return Number(stack[0])
+    return Number(stack.pop())
 };
 
 
@@ -23,9 +22,7 @@ function calculate(number1: number, number2: number, operator: string) : number 
             return number1 - number2;
         case '*':
             return number1 * number2;
-        case '/':
-            return Math.trunc(number1 / number2);
         default:
-            return -1;
+            return Math.trunc(number1 / number2);
     }
 }
