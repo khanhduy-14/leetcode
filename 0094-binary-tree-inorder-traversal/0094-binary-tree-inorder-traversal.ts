@@ -20,18 +20,10 @@ function inorderTraversal(root: TreeNode | null): number[] {
         if (!root) {
             return;
         }
-        if (!root.left && !root.right) {
-            result.push(root.val)
-            return;
-        };
         
-        if(root.left){
             traversal(root.left);
-        }
         result.push(root.val);
-        if(root.right) {
              traversal(root.right);
-        }        
     }
     
     traversal(root)
