@@ -14,25 +14,19 @@
 
 function maxDepth(root: TreeNode | null): number {
     
-    let leftDepth = 0;
-    let rightDepth = 0;
-    if(!root) return 0;
-    if (!root?.left && !root?.right) {
-        return 1;
+    if (!root) return 0;
+    
+    const queue = [root];
+    queue.push(root);
+    let depth = 0;
+    while (queue.length !== 0) {
+        depth++;
+        const len = queue.length
+  for (let i = 0; i < len; i++) {
+            if (queue[i].left) queue.push(queue[i].left);
+            if (queue[i].right) queue.push(queue[i].right);
+        }
+        queue.splice(0, len)
     }
-    
-    if (root?.left) {
-        leftDepth += maxDepth(root.left);
-    }
-    
-    if(root?.right) {
-         rightDepth += maxDepth(root.right);
-    }
-    
-    if(leftDepth > rightDepth) {
-       return 1 + leftDepth;
-    }
-    
-    return 1 + rightDepth
-    
+    return depth
 };
