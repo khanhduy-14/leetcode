@@ -1,21 +1,19 @@
 function addBinary(a: string, b: string): string {
-  let i: number = a.length - 1, j: number =  b.length - 1, result: string[] = [];
-  let num =0;
-  while(a[i] || b[j]) {
-      const num1 = Number(a[i] ?? 0);
-      const num2 = Number(b[j] ?? 0);
+  let carry: number = 0, i: number = a.length - 1, j: number = b.length - 1, result = '';
+    
+  while (i>=0 || j>=0 || carry) {
+      let sum = carry;
       
-      const sum = num1 + num2 + num;
-       num = Math.floor(sum / 2);
-      result.unshift((sum % 2).toString());
+      if(a[i]) sum+= Number(a[i]);
+      if(b[j]) sum+= Number(b[j]);
+      
+      result = (sum % 2) + result;
+      carry = Math.floor(sum / 2);
+      
       i--;
       j--;
       
   }
-
-    if(num > 0) {
-        result.unshift(num.toString());
-    }
-    return result.join('')
+    return result
   
 };
