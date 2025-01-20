@@ -1,19 +1,17 @@
 function lengthOfLongestSubstring(s: string): number {
-    let substring = '';
-    let maxSubstring = '';
-    const distinctCharacterIndexMap: Record<string, number> = {};
-   
-    for(let i = 0; i < s.length; i++) {
-        if(distinctCharacterIndexMap[s[i]] !== undefined && distinctCharacterIndexMap[s[i]] !== -1){
-           const dupCharacterIndex = substring.indexOf(s[i]);
-           substring = substring.slice(dupCharacterIndex + 1);
-             distinctCharacterIndexMap[s[i]] = -1;
-        }
-        distinctCharacterIndexMap[s[i]] = 1;
-        substring += s[i]
-        if (substring.length > maxSubstring.length) {
-            maxSubstring = substring;
-        }
+ let length = 0;
+ const  characterMap = new Map();
+
+ let leftIndex = 0;
+ for (let rightIndex = 0; rightIndex < s.length; rightIndex++) {
+    const character = s[rightIndex];
+    if (characterMap.has(character) && characterMap.get(character) >= leftIndex) {
+        leftIndex = characterMap.get(character) + 1;
     }
-    return maxSubstring.length
+
+    length = Math.max(length, rightIndex - leftIndex + 1);
+
+    characterMap.set(character, rightIndex); 
+ }
+ return length
 };
