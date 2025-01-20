@@ -14,8 +14,8 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
     const resultNode = new ListNode();
     let curResultNode = resultNode;
     let carry = 0;
-    while(l1 || l2) {
-        let sum = 0;
+    while(l1 || l2 || carry > 0) {
+        let sum = carry;
         if(l1) {
             sum += l1.val;
             l1 = l1.next;
@@ -24,14 +24,11 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
             sum += l2.val;
             l2 = l2.next;
         }
-        const result = (sum + carry) % 10;
-        carry = Math.floor((sum + carry) / 10);
-        console.log(carry)
+        const result =sum % 10;
+        carry = Math.floor(sum / 10);
         curResultNode.next = new ListNode(result);
         curResultNode = curResultNode.next;
     }
-    if(carry > 0) {
-        curResultNode.next = new ListNode(carry);
-    }        
+   
     return resultNode.next
 };
