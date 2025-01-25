@@ -13,13 +13,11 @@ class Solution:
 
     def countString(self, s: str) -> str:
         freq = 1
-        groupCount = []
         result = ''
         for i in range(1, len(s)):
             if s[i] == s[i-1]:
                 freq+=1
             else:
-                groupCount.append([freq, s[i - 1]])
                 result+= str(freq)
                 result+=s[i-1]
                 freq = 1
