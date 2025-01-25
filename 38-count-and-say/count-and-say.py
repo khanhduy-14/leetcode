@@ -7,19 +7,22 @@ class Solution:
         say = '1'
 
         for i in range(1,n):
-            groupCount = self.groupIdentical(say)
-            say = ''.join(str(num) + char for num, char in groupCount)
+            say = self.countString(say)
         return say
 
 
-    def groupIdentical(self, s: str) -> list[list[str]]:
+    def countString(self, s: str) -> str:
         freq = 1
         groupCount = []
+        result = ''
         for i in range(1, len(s)):
             if s[i] == s[i-1]:
                 freq+=1
             else:
                 groupCount.append([freq, s[i - 1]])
+                result+= str(freq)
+                result+=s[i-1]
                 freq = 1
-        groupCount.append([freq, s[-1]])
-        return groupCount
+        result+= str(freq)
+        result+=s[-1]
+        return result
