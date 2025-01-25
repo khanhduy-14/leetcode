@@ -13,15 +13,13 @@ class Solution:
 
 
     def groupIdentical(self, s: str) -> list[list[str]]:
-        character = s[0]
         freq = 1
         groupCount = []
         for i in range(1, len(s)):
-            if s[i] == character:
+            if s[i] == s[i-1]:
                 freq+=1
             else:
-                groupCount.append([freq, character])
-                character = s[i]
+                groupCount.append([freq, s[i - 1]])
                 freq = 1
-        groupCount.append([freq, character])
+        groupCount.append([freq, s[-1]])
         return groupCount
