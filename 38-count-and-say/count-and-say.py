@@ -4,13 +4,12 @@ class Solution:
         if n <= 1:
             return str(n)
         
-        rleStore = ['1']
+        say = '1'
 
         for i in range(1,n):
-            print(rleStore)
-            groupCount = self.groupIdentical(rleStore[i-1])
-            rleStore.append(''.join(str(num) + char for num, char in groupCount))
-        return rleStore[len(rleStore) - 1]
+            groupCount = self.groupIdentical(say)
+            say = ''.join(str(num) + char for num, char in groupCount)
+        return say
 
 
     def groupIdentical(self, s: str) -> list[list[str]]:
