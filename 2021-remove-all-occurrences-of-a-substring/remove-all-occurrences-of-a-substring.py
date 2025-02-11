@@ -5,7 +5,7 @@ class Solution:
 
         for i in range(len(s)):
             stack+=s[i]
-            if len(stack) >= len(part) and stack[len(stack) - len(part):] == part:
+            if stack[len(stack) - len(part):] == part:
                 stack = stack[:len(stack) - len(part)]
 
         return stack
