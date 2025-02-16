@@ -5,7 +5,6 @@ class Solution:
         max_sum = 0
         oddDays = (days + 1) // 2
         evenDays = days // 2
-        print(oddDays, evenDays)
         for i in range(oddDays):
             max_sum+=pizzas.pop()
         for i in range(evenDays):
