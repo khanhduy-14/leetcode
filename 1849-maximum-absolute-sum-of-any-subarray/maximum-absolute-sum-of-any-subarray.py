@@ -1,13 +1,13 @@
 class Solution:
     def maxAbsoluteSum(self, nums: List[int]) -> int:
-        max_ending = nums[0]
-        min_ending = nums[0]
-        res = abs(nums[0])
-        for i in range(1, len(nums)):
-            max_ending = max(max_ending + nums[i], nums[i])
-            min_ending = min(min_ending + nums[i], nums[i])
+        max_ending = 0
+        min_ending = 0
+        res = 0
+        for i in range(0, len(nums)):
+            max_ending = max(max_ending + nums[i], 0)
+            min_ending = min(min_ending + nums[i], 0)
 
-            res = max(res, abs(max_ending), abs(min_ending))
+            res = max(res, max_ending, -min_ending)
 
         return res
         
