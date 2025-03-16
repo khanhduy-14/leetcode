@@ -1,34 +1,23 @@
 class Solution:
     def repairCars(self, ranks: List[int], cars: int) -> int:
-        l, r, m_rank = 0, cars, min(ranks)
-
-
-
-        while l < r:
-            m = (l + r) // 2
-            count = 0
-            time = m*m * m_rank
-            for rank in ranks:
-                c_car = floor(sqrt(time/rank))
-                count+=c_car
-            if count >= cars:
-                r = m
-            else:
-                l = m + 1
-        l = m_rank * (r-1) * (r-1)
-        r = m_rank * r * r
-        while l < r:
-            count = 0
-            m = (l + r) // 2
-            for rank in ranks:
-                c_car = floor(sqrt(m/rank))
-                count+=c_car
-              
-            if count >= cars:
-                r = m
-            else:
-                l = m + 1
-        return l
-
+        left = 1
+        right = min(ranks) * cars * cars 
         
+        def can_repair_all(time):
+            total_cars_repaired = 0
+            for rank in ranks:
+                cars_repaired = int((time / rank) ** 0.5)
+                total_cars_repaired += cars_repaired
+                if total_cars_repaired >= cars:
+                    return True
+            return False
+        
+        while left < right:
+            mid = (left + right) // 2
+            if can_repair_all(mid):
+                right = mid
+            else:
+                left = mid + 1
+                
+        return left
         
