@@ -1,19 +1,17 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        res = []
-        def backtrack(fixedPosition): 
-            if fixedPosition == len(nums):
-                res.append(nums[:])
-            
-            for i in range(fixedPosition, len(nums)):
-                nums[i], nums[fixedPosition] = nums[fixedPosition], nums[i]
-                backtrack(fixedPosition + 1)
+        perms = [[]]
 
-                # reset
-                nums[i], nums[fixedPosition] = nums[fixedPosition], nums[i]
+        for num in nums:
+            cur_perms = []
+            for p in perms:
+                for j in range(len(p) + 1):
+                    pCopy = p.copy()
+                    pCopy.insert(j, num)
+                    cur_perms.append(pCopy)
+            perms = cur_perms
+        return perms
 
-        backtrack(0)
-        return res
 
 
 
