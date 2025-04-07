@@ -16,8 +16,9 @@ class Solution:
                 return
             for j in range(n):
                 if check_valid_queen_position(i, j):
-                    row = '.' * n
-                    row = row[:j] + 'Q' + row[j+1:]
+                    row = ['.'] * n  
+                    row[j] = 'Q'    
+                    row = ''.join(row)
                     queen_positions.append([i,j])
                     curr.append(row)
                     backtrack(i+1, curr)
