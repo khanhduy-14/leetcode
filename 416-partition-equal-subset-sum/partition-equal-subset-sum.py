@@ -7,11 +7,11 @@ class Solution:
 
         n = len(nums)
         target = s // 2
-        dp = [True] + [False] * s
+        dp = [True] + [False] * target
         for i in range(n):
            
 
-            for j in range(s, -1, -1):
-                if dp[j]:
+            for j in range(target, -1, -1):
+                if dp[j] and j + nums[i] <= target:
                     dp[j + nums[i]] = True
         return dp[target]
