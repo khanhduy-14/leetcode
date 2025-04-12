@@ -9,9 +9,9 @@ class Solution:
         target = s // 2
         dp = [True] + [False] * target
         for i in range(n):
-           
-
-            for j in range(target, -1, -1):
-                if dp[j] and j + nums[i] <= target:
-                    dp[j + nums[i]] = True
+            for j in range(target, nums[i]-1, -1):
+                if dp[j-nums[i]]:
+                    dp[j] = True
+            if dp[target]:
+                return True
         return dp[target]
