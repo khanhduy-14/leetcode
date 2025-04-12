@@ -6,8 +6,8 @@ class Solution:
         dp[0] = True
 
         for i in range(n):
-            for j in range(i+1, n+1):
-                if dp[i] and s[i:j] in wordSet:
-                    dp[j] = True
+            for word in wordDict:
+                if dp[i] and s[i:i+len(word)] in wordSet and i + len(word) <= n:
+                    dp[i+len(word)] = True
 
         return dp[-1]
