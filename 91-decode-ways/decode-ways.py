@@ -20,6 +20,5 @@ class Solution:
                 else:
                     res = 0
                 can_group = 0
-            print(res, can_group)
           
         return res
