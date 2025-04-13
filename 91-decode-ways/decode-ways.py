@@ -8,14 +8,11 @@ class Solution:
 
         for i in range(1, len(s)):
             temp = 0
-
             if s[i] != '0':
                 temp += curr
-
-            two_digit = int(s[i - 1:i + 1])
-            if 10 <= two_digit <= 26:
+            
+            if int(s[i-1:i+1]) >= 10 and int(s[i-1:i+1]) <= 26:
                 temp += prev
-
+            
             prev, curr = curr, temp
-
         return curr
