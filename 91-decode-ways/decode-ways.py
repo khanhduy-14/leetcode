@@ -1,24 +1,21 @@
 class Solution:
     def numDecodings(self, s: str) -> int:
-        res = 0
-        can_group = 1
+        if not s or s[0] == '0':
+            return 0
 
-        for i in range(len(s)):
-            char = s[i]
-            prev_char = s[i-1] if i > 0 else ''
-            prev_res = res
-            
-            if int(char) >= 1 and int(char) <=26:
-                if int(prev_char+char) >= 1 and int(prev_char+char) <=26:
-                    res+=can_group
-                    can_group = prev_res if i > 0 else 1
-                else: 
-                    can_group = res
-            else:
-                if int(prev_char+char) >= 1 and int(prev_char+char) <=26:
-                    res=can_group if i > 0 else 0
-                else:
-                    res = 0
-                can_group = 0
-          
-        return res
+        prev = 1  
+        curr = 1 
+
+        for i in range(1, len(s)):
+            temp = 0
+
+            if s[i] != '0':
+                temp += curr
+
+            two_digit = int(s[i - 1:i + 1])
+            if 10 <= two_digit <= 26:
+                temp += prev
+
+            prev, curr = curr, temp
+
+        return curr
