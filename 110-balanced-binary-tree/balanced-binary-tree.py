@@ -17,7 +17,7 @@ class Solution:
             right = dfs(root.right)
             if abs(left-right) > 1:
                 res=False
-            
+                return 0
             return 1 + max(left, right)
         dfs(root)
         return res
