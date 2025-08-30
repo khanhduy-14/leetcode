@@ -2,14 +2,11 @@ class Solution {
 public:
     long long minCost(vector<int>& basket1, vector<int>& basket2) {
         int gm = basket1[0];
-        map<int, int> m;
-        for (int c : basket1) {
-            m[c] +=1;
-            gm = min(c, gm);
-        }
-        for (int c : basket2) {
-            m[c] -=1;
-            gm = min(c, gm);
+        unordered_map<int, int> m;
+        for (int i = 0; i < basket1.size(); ++i) {
+            m[basket1[i]]++;
+            m[basket2[i]]--;
+            gm = min(gm, min(basket1[i], basket2[i]));
         }
 
         vector<int> swp;
