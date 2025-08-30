@@ -1,9 +1,16 @@
 class Solution {
 public:
     long long minCost(vector<int>& basket1, vector<int>& basket2) {
+        int gm = basket1[0];
         map<int, int> m;
-        for (int c : basket1) m[c] +=1;
-        for (int c : basket2) m[c] -=1;
+        for (int c : basket1) {
+            m[c] +=1;
+            gm = min(c, gm);
+        }
+        for (int c : basket2) {
+            m[c] -=1;
+            gm = min(c, gm);
+        }
 
         vector<int> swp;
         for (auto &p : m) {
@@ -15,10 +22,7 @@ public:
             }
         }
         sort(swp.begin(), swp.end());
-        int gm = min(
-            *min_element(basket1.begin(), basket1.end()),
-            *min_element(basket2.begin(), basket2.end())
-        );
+     
         long long c = 0;
         for (int i = 0; i < swp.size() / 2; i++) {
             int dc = swp[i];
