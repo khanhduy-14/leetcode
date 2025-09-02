@@ -1,27 +1,25 @@
 class Solution {
 public:
+    static bool comp (vector<int>& a, vector<int>& b) {
+        if (a[0] == b[0]) 
+            {
+                return a[1] > b[1];
+            }
+        return a[0] < b[0];
+    }
     int numberOfPairs(vector<vector<int>>& points) {
         int ans = 0;
-
+        sort(points.begin(), points.end(), comp);
         for (int i = 0; i < points.size(); i++) {
-            vector<int> a = points[i];
-            for (int j = 0; j < points.size(); j++) {
+             vector<int> a = points[i];
+             int miny = INT_MIN; 
+            for (int j = i+1; j < points.size(); j++) {
                 vector<int> b = points[j];
-                if ( i != j && (a[0] <= b[0] && a[1] >= b[1])) {
-                    bool check = true;
-                    for(int k = 0; k < points.size(); k++) {
-                        if (k==i || k == j) {
-                            continue;
-                        }
-                        vector<int> temp = points[k];
-                       
-                      if ((a[0] <= temp[0] && temp[0] <= b[0]) && (b[1] <= temp[1] && temp[1] <= a[1])) check = false;
+                if (a[1] >= b[1]) {
+                    if (b[1] > miny) {
+                        ans+=1;
+                        miny =  b[1];
                     }
-                    if (check) {
-                            ans+=1;
-                    }
-
-                   
                 }
             }
         }
