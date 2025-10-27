@@ -10,10 +10,7 @@ public:
                 }
             }
             if (count > 0) {
-                if (curr > 0) {
-                    curr*=count;
-                    res+=curr;  
-                }
+                res+= (curr * count);
                 curr=count;
                 
             }
