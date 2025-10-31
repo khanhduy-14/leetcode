@@ -25,7 +25,6 @@ public:
                     b^=i;
                 }
             }
-            cout <<" " << a << " " << b;
             i++;
         }
         return {a,b};
