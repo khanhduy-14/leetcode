@@ -15,16 +15,14 @@ public:
         while (s.count(head->val)) {
             head = head->next;
         }
-        ListNode *prev = head, *curr = head->next;
-
-        while(curr != nullptr) {
-            if(s.count(curr->val)) {
-                prev->next = curr->next;
+        ListNode *curr = head;
+        while(curr && curr->next) {
+            if(s.count(curr -> next -> val)) {
+                curr->next = curr->next->next;
             }
             else {
-                prev = curr;
+                curr = curr->next;
             }
-            curr = curr->next;
         }
         return head;
 
