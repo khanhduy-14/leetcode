@@ -3,7 +3,7 @@ public:
     long long maxPower(vector<int>& stations, int r, int k) {
         int n = stations.size();
 
-        // --- Tính power hiện tại mỗi city bằng prefix difference ---
+    
         vector<long long> diff(n + 1, 0);
         for (int i = 0; i < n; i++) {
             diff[max(0, i - r)] += stations[i];
@@ -16,7 +16,6 @@ public:
         for (int i = 1; i < n; i++)
             power[i] = power[i - 1] + diff[i];
 
-        // --- Binary search trên đáp án ---
         long long low = 0, high = 1e14, ans = 0;
         while (low <= high) {
             long long mid = (low + high) / 2;
