@@ -2,26 +2,25 @@ static const long long MOD = 1'000'000'007LL;
 class Solution {
 public:
     int numSub(string s) {
-        vector<string> arr1 = split(s, "0");
-        long long res = 0;
-        for (string str1 : arr1) {
-            long long len = (long long)str1.size();
-            long long add = (len * (len + 1)) / 2;  // safe
-            res = (res + add) % MOD;
-        }
-        return res;
+       
+
+        
+        return cal(s);
         
     }
 private: 
-    vector<string> split(string s, string delimiter) {
-        vector<string> arr;
+    long long cal(string s) {
+        long long res = 0;
         int start=0, end;
-        while((end = s.find(delimiter, start)) != string::npos) {
-            arr.push_back(s.substr(start, end - start));
+        while((end = s.find("0", start)) != string::npos) {
+            long long len = (long long)s.substr(start, end - start).size();
+            long long add = (len * (len + 1)) / 2; 
+            res = (res + add) % MOD;
             start= end + 1;
         }
-        arr.push_back(s.substr(start, s.size() - start));
-
-        return arr;
+            long long len = (long long)s.substr(start, s.size() - start).size();
+            long long add = (len * (len + 1)) / 2; 
+            res = (res + add) % MOD;
+        return res;
     }
 };
