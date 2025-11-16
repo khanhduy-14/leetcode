@@ -10,17 +10,11 @@ public:
     }
 private: 
     long long cal(string s) {
-        long long res = 0;
-        int start=0, end;
-        while((end = s.find("0", start)) != string::npos) {
-            long long len = (long long)s.substr(start, end - start).size();
-            long long add = (len * (len + 1)) / 2; 
-            res = (res + add) % MOD;
-            start= end + 1;
+        long long res = 0,add = 0;
+        for (char c: s) {
+            if (c=='0') add =0;
+            else res+=++add;
         }
-            long long len = (long long)s.substr(start, s.size() - start).size();
-            long long add = (len * (len + 1)) / 2; 
-            res = (res + add) % MOD;
-        return res;
+        return res%MOD;
     }
 };
