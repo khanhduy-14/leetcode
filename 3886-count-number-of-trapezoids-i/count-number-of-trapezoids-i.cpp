@@ -3,7 +3,7 @@ class Solution {
 public:
     int countTrapezoids(vector<vector<int>>& points) {
         unordered_map <int, int> hm = {};
-        long long ans = 0, prev = 0;
+        long long sameY2 = 0, sum = 0;
         for (auto point: points) {
             hm[point[1]]+=1;
         }
@@ -13,10 +13,11 @@ public:
                 continue;
             }
             long long pairs = 1LL * value * (value - 1) / 2;
-            ans+= pairs  * prev;
-            prev+= pairs;
+
+            sameY2+= (pairs * pairs);
+            sum+= pairs;
         }
 
-        return ans % MOD;
+        return ((sum * sum) - sameY2) / 2 % MOD;
     }
 };
