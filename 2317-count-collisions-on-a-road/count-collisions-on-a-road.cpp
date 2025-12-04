@@ -6,7 +6,7 @@ public:
         while (j >= 0 && directions[j] == 'R') j--;   
         
         int ans = 0;
-        for (i; i<j+1; i++)
+        for (i; i<=j; i++)
             if (directions[i] != 'S') ans++;
         return ans;
     }
