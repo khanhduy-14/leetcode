@@ -13,6 +13,7 @@ public:
 
             return false;
         });
+        int addAll = 0;
         vector<int> res(numberOfUsers, 0);
         vector<bool> online(numberOfUsers, true);
 
@@ -43,8 +44,7 @@ public:
                 string msg = e[2];
 
                 if (msg == "ALL") {
-                    for (int i = 0; i < numberOfUsers; i++)
-                        res[i]++;
+                        addAll++;
                 }
                 else if (msg == "HERE") {
                     for (int i = 0; i < numberOfUsers; i++)
@@ -64,6 +64,9 @@ public:
                 }
             }
         }
+
+        for (int i = 0; i < numberOfUsers; i++)
+            res[i] += addAll;
 
         return res;
     }
