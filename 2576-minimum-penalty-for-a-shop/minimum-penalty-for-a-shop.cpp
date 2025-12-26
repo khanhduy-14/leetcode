@@ -1,22 +1,22 @@
 class Solution {
 public:
     int bestClosingTime(string customers) {
-        int n = customers.size();
-        vector<vector<int>> prefix(n + 2, vector<int>(2, 0));
-        for (int i = 1; i <= n; i++) {
-            prefix[i][0] = prefix[i-1][0] + (customers[i-1] == 'Y' ? 1 : 0);
-            prefix[i][1] = prefix[i-1][1] + (customers[i-1] == 'N' ? 1 : 0);
+        int n = customers.size(), res = 0, penalty = 0;
+
+        for (char c : customers) if (c == 'Y') penalty++;
+
+        int min_penalty = penalty;
+
+        for (int i = 0; i < n; i++) {
+             if (customers[i] == 'Y') penalty--; else penalty++;
+             cout << penalty << endl;
+             if (penalty < min_penalty) {
+                min_penalty = penalty;
+                res = i + 1;
+             }
+
         }
 
-        pair<int, int> res = {0, 1e5};
-        for (int i = 1; i <= n + 1; i++) {
-            int penalty = prefix[i-1][1] + (prefix[n][0] - prefix[i-1][0]);
-            if (penalty < res.second) {
-                res.second = penalty;
-                res.first = i;
-            }
-        }
-
-        return res.first - 1;
+        return res;
     }
 };
