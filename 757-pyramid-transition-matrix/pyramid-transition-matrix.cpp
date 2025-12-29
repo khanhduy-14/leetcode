@@ -4,36 +4,9 @@ public:
     unordered_map<string, bool> memo;
 
     bool dfs(string& bottom) {
-        if (bottom.size() == 1)
-            return true;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-        if (memo.count(bottom)) {
-            return memo[bottom];
-        }
-
+        if (bottom.size() == 1) return true;
+        if (memo.count(bottom)) return memo[bottom];
+        
         string nextRow;
         return memo[bottom]=buildNextRow(bottom, 0, nextRow);
     }
