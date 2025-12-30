@@ -29,7 +29,6 @@ public:
         int row = grid.size(), col = grid[0].size(), res = 0;
         for (int r = 0; r < row - 2; r++) {
             for (int c = 0; c < col - 2; c++) {
-                vector<int> count(10,0); 
                 if (check3x3(r, c, grid)) {
                     res+=1;
                 }
