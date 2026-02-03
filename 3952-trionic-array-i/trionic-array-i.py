@@ -1,29 +1,27 @@
 class Solution:
     def isTrionic(self, nums: List[int]) -> bool:
-        p1 = 0
-       
-        for i  in range(1, len(nums)):
-            if nums[i] > nums[i-1]:
-                p1 = i
-            elif nums[i] == nums[i-1]:
-                return False
-            else:
-                break
-        q = p1+1
-        for i  in range(p1+2, len(nums)):
-            if nums[i] < nums[i-1]:
-                q = i
-            elif nums[i] == nums[i-1]:
-                return False
-            else:
-                break
-        p2= q+1
-        for i  in range(q+2, len(nums)):
-            if nums[i] > nums[i-1]:
-                p2=i
-            elif nums[i] == nums[i-1]:
-                return False
-            else:
-                break
-        return p1 > 0 & p1 < q & q < p2  & p2 == len(nums) -1
+        n = len(nums)
+        i = 1
+
+        while i < n and nums[i] > nums[i - 1]:
+            i += 1
+        p = i - 1
+
+        if p == 0:
+            return False
+
+        while i < n and nums[i] < nums[i - 1]:
+            i += 1
+        q = i - 1
+
+        if q == p:
+            return False
+
+        if i == n:
+            return False 
+            
+        while i < n and nums[i] > nums[i - 1]:
+            i += 1
+
+        return i == n
         
