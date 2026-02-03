@@ -25,6 +25,5 @@ class Solution:
                 return False
             else:
                 break
-        print("p1: " + str(p1) + " q: " + str(q) + " p2: " + str(p2))
         return p1 > 0 & p1 < q & q < p2  & p2 == len(nums) -1
         
