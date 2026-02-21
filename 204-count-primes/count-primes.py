@@ -1,15 +1,13 @@
 class Solution:
     def countPrimes(self, n: int) -> int:
-        if n <= 1:
+        if n <= 2:
             return 0
         x = [True] * n
-        res = 0
-        for i in range(2, n):
-            if x[i] == True:
-                res+=1
+        x[0] = x[1] = False
+        for i in range(3, int(n**0.5) + 1, 2):
+            if x[i]:
                 j = i * i
                 while j < n:
                     x[j] = False
-                    j+=i
-        
-        return res
+                    j+=(2*i)
+        return 1 + sum(x[i] for i in range(3,n,2))
